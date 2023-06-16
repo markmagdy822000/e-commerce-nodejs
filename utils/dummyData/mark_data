@@ -1,0 +1,45 @@
+"categories": {"Clothes", "Food", "Electrical Devices"}
+// _________________________________
+"Subcategories":
+@Clothes :{"T-shirt", "pants", "shirt"}
+@Food: { "Fruits" ,"Vegetables"}
+@Electrical Devices:{"Electronic", "kitchen machines"}
+// ______________________________
+"products":
+@ T-shirt: {"red T-shirt", "blue T-shirt" }
+@ pants: {"red pants", "blue pants"}
+@ shirt:{"red shirts", "blue shirts"}
+    // -----
+@Fruits{"apple","banana", "tomato"}
+@Vegetables: {"carrot", "cucmber", "tomato"}
+    // ---------
+@Electronics: {"Mobile","computer"}
+@"kitchen machines":{"vacuum cleaner", "electric iron"}
+categories:{
+    "name":,
+    "image":
+
+}
+subcategories:{
+    "_id": "",
+    "name": "",
+    "category": ,
+}
+    
+product:{
+    "title":"",
+    "description":"description", 
+    "quantity":50,
+    "sold":50,
+    "price":51,
+    "priceAfterDiscount":50,
+    "colors":["red","green","yellow"],
+    "imageCover":"image cover",
+    "images":["images"],
+    "category":"",
+    "subCategory":[""],
+    "brand":"brand",
+    "ratingAverage":3,
+    "ratingQuantity":3,
+
+}
