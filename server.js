@@ -6,13 +6,7 @@ const morgan = require("morgan");
 
 dotenv.config({ path: "config.env" });
 const dbConnection = require("./config/database");
-const categoryRoute = require("./routes/categoryRoute");
-const brandRoute = require("./routes/brandRoute");
-const productRoute = require("./routes/productRoute");
-const subCategoryRoute = require("./routes/subCategoryRoute");
-const userRoute = require("./routes/userRoute");
-const authRoute = require("./routes/authRoute");
-const reviewRoute = require("./routes/reviewRoute");
+const mountRoutes = require("./routes"); // no need to write index (it is read by default)
 
 // Express app
 const app = express();
@@ -32,13 +26,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // 2-Mount Routes
-app.use("/api/v1/categories", categoryRoute);
-app.use("/api/v1/subCategories", subCategoryRoute);
-app.use("/api/v1/brands", brandRoute);
-app.use("/api/v1/products", productRoute);
-app.use("/api/v1/users", userRoute);
-app.use("/api/v1/auth", authRoute);
-app.use("/api/v1/review", reviewRoute);
+mountRoutes(app);
 
 app.use("*", (req, res, next) => {
   next(new ApiError(`can not find URL ${req.originalUrl}`, 400));
