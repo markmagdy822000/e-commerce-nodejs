@@ -20,6 +20,7 @@
     "eqeqeq": "off",
     "no-return-assign": "off",
     "import/no-extraneous-dependencies": "off",
+    "eslint-disable-next-line array-callback-return": "off",
     "prefer-destructuring": ["warn", { "object": true, "array": false }],
     "no-unused-vars": ["warn", { "argsIgnorePattern": "req|res|next|val" }]
   }

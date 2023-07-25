@@ -1,3 +1,7 @@
 node_modules/
 config.env
-utils
+package-lock.json
+git tutorial.jpg
+uploads
+TODO
+
