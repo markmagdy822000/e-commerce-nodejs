@@ -15,7 +15,7 @@ const app = express();
 
 app.use(cors());
 app.options("*", cors());
-
+// s
 app.use(compression());
 
 const ApiError = require("./utils/apiError");
