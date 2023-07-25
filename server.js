@@ -12,10 +12,11 @@ const mountRoutes = require("./routes"); // no need to write index (it is read b
 
 // Express app
 const app = express();
+// new orders
 
 app.use(cors());
 app.options("*", cors());
-// s
+
 app.use(compression());
 
 const ApiError = require("./utils/apiError");
