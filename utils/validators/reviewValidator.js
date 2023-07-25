@@ -6,22 +6,25 @@ const createReviewValidor = [
   check("title").optional(),
   check("ratings")
     .notEmpty()
-    .withMessage("title is required")
+    .withMessage("ratings is required")
     .isFloat({ min: 1, max: 5 })
     .withMessage("rating must be between 1 and 5"),
-  check("user").isMongoId().withMessage("Invalid user id formate"),
+
   check("product")
     .isMongoId()
-    .withMessage("Invalid product id formate")
+    .withMessage("Invalid Review id format")
     .custom((val, { req }) =>
-      Review.findOne({
-        user: req.user._id.toString(),
-        product: req.body.product,
-      }).then((review) => {
-        if (review) {
-          return Promise.reject(new Error(`You already reviewed this product`));
+      // Check if logged user create review before
+      Review.findOne({ user: req.user._id, product: req.body.product }).then(
+        (review) => {
+          console.log(review);
+          if (review) {
+            return Promise.reject(
+              new Error("You already created a review before")
+            );
+          }
         }
-      })
+      )
     ),
   validateMiddleware,
 ];
@@ -40,7 +43,7 @@ const deleteReviewValidor = [
         if (req.user.role == "user") {
           // make sure logged user (req.user.role) is the same who  made the review (req.params.id)
           if (!review) return Promise.reject(new Error("Review not found"));
-          if (req.user._id.toString() != review.user.toString())
+          if (req.user._id.toString() !== review.user._id.toString())
             return Promise.reject(new Error("Please, delete your own review"));
         }
         return true;
