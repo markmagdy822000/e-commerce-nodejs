@@ -12,6 +12,8 @@ const updateOne = (Model) =>
       return next(
         new ApiError(`No ${Model} found with this id ${req.params.id}`, 404)
       );
+
+    document.save();
     res.status(200).json({ data: document });
   });
 
@@ -65,8 +67,8 @@ const deleteOne = (Model) =>
 
     if (!document)
       return next(new ApiError(`No ${Model} found with this id ${id}`, 404));
-
-    res.status(200).send(document);
+    document.remove();
+    res.status(204).send(document);
   });
 
 const inActive = (Model) =>
