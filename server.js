@@ -1,8 +1,10 @@
 const path = require("path");
 
+const cors = require("cors");
 const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const compression = require("compression");
 
 dotenv.config({ path: "config.env" });
 const dbConnection = require("./config/database");
@@ -10,6 +12,12 @@ const mountRoutes = require("./routes"); // no need to write index (it is read b
 
 // Express app
 const app = express();
+
+app.use(cors());
+app.options("*", cors());
+
+app.use(compression());
+
 const ApiError = require("./utils/apiError");
 const { globalError } = require("./middlewares/errorMiddleware");
 // 1-Connect to Database
