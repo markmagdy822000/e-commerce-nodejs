@@ -5,6 +5,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const compression = require("compression");
+const webhookCheckout = require("./services/orderService");
 
 dotenv.config({ path: "config.env" });
 const dbConnection = require("./config/database");
@@ -18,6 +19,12 @@ app.options("*", cors());
 // s
 app.use(compression());
 
+// checkout webhook
+app.post(
+  "/webhook-checkout",
+  express.raw({ type: "application/json" }),
+  webhookCheckout
+);
 const ApiError = require("./utils/apiError");
 const { globalError } = require("./middlewares/errorMiddleware");
 // 1-Connect to Database
