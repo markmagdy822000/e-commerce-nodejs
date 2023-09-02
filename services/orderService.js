@@ -144,7 +144,7 @@ exports.checkoutSession = asyncHandler(async (req, res, next) => {
     line_items: [
       {
         name: req.user.name,
-        amount: totalOrderPrice * 100,
+        price: totalOrderPrice * 100,
         currency: "egp",
         quantity: 1,
       },
