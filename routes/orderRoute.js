@@ -7,7 +7,7 @@ const {
   findSpecificOrder,
   findAllOrders,
   updateOrderToPaid,
-  updateOrderDeliverd,
+  updateOrderToDelivered,
   checkoutSession,
 } = require("../services/orderService");
 
@@ -30,5 +30,5 @@ router.route("/:id").get(findSpecificOrder);
 router.route("/:id/pay").put(allowedTo("admin", "manager"), updateOrderToPaid);
 router
   .route("/:id/deliver")
-  .put(allowedTo("admin", "manager"), updateOrderDeliverd);
+  .put(allowedTo("admin", "manager"), updateOrderToDelivered);
 module.exports = router;
