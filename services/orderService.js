@@ -2,6 +2,8 @@ const stripe = require("stripe")(process.env.STRIPE_SECRETE);
 const asyncHandler = require("express-async-handler");
 const factory = require("./handlersFactory");
 const ApiError = require("../utils/apiError");
+const { buffer } = require('micro')
+
 
 const User = require("../models/userModel");
 const Product = require("../models/productModel");
@@ -208,8 +210,9 @@ exports.webhookCheckout = asyncHandler(async (req, res, next) => {
   let event;
 
   try {
+    const reqBuffer = await buffer(req.body)
     event = stripe.webhooks.constructEvent(
-      req.body,
+      reqBuffer,
       sig,
       process.env.STRIPE_WEBHOOK_SECRET
     );
