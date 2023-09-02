@@ -5,7 +5,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const compression = require("compression");
-const webhookCheckout = require("./services/orderService");
+const {webhookCheckout} = require("./services/orderService");
 
 dotenv.config({ path: "config.env" });
 const dbConnection = require("./config/database");
