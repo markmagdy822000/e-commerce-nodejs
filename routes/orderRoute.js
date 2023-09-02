@@ -6,7 +6,7 @@ const {
   filterOrderForLoggedUser,
   findSpecificOrder,
   findAllOrders,
-  updateOrderPaid,
+  updateOrderToPaid,
   updateOrderDeliverd,
   checkoutSession,
 } = require("../services/orderService");
@@ -27,7 +27,7 @@ router
 router.route("/").get(filterOrderForLoggedUser, findAllOrders);
 
 router.route("/:id").get(findSpecificOrder);
-router.route("/:id/pay").put(allowedTo("admin", "manager"), updateOrderPaid);
+router.route("/:id/pay").put(allowedTo("admin", "manager"), updateOrderToPaid);
 router
   .route("/:id/deliver")
   .put(allowedTo("admin", "manager"), updateOrderDeliverd);
