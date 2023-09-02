@@ -2,7 +2,7 @@ const express = require("express");
 
 const { protect, allowedTo } = require("../services/authService");
 const {
-  creatCashOrder,
+  createCashOrder,
   filterOrderForLoggedUser,
   findSpecificOrder,
   findAllOrders,
@@ -16,7 +16,7 @@ router.use(protect);
 
 router.get("/checkout-session/:cartId", allowedTo("user"), checkoutSession);
 
-router.route("/:cartId").post(allowedTo("user"), creatCashOrder);
+router.route("/:cartId").post(allowedTo("user"), createCashOrder);
 router
   .route("/")
   .get(
