@@ -195,7 +195,7 @@ const createCardOrder = async (session) => {
       },
     }));
     await Product.bulkWrite(bulkOption, {});
-
+    console.log("cart.cartItems: ", cart.cartItems);
     // 5) Clear cart depend on cartId
     await Cart.findByIdAndDelete(cartId);
   }
