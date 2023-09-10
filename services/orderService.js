@@ -144,9 +144,6 @@ exports.checkoutSession = asyncHandler(async (req, res, next) => {
   }
 
   // 2) Get order price depend on cart price "Check if coupon apply"
-  const cartPrice = cart.totalPriceAfterDiscount
-    ? cart.totalPriceAfterDiscount
-    : cart.totalCartPrice;
 console.log(
     "🚀 ~ file: orderService.js:142 ~ exports.checkoutSession=asyncHandler ~ cartPrice + taxPrice + shippingPrice:",
     cartPrice,
@@ -155,6 +152,9 @@ console.log(
     "+",
     shippingPrice
   );
+  const cartPrice = cart.totalPriceAfterDiscount
+    ? cart.totalPriceAfterDiscount
+    : cart.totalCartPrice;
   const totalOrderPrice = cartPrice + taxPrice + shippingPrice;
 
   // 3) Create stripe checkout session
